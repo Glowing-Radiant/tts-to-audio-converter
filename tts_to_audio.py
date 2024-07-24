@@ -2,7 +2,7 @@ import os
 import re
 from dotenv import load_dotenv
 import uuid
-#import python -dotenv
+
 from elevenlabs import VoiceSettings
 from elevenlabs.client import ElevenLabs
 
@@ -113,7 +113,10 @@ def main():
     api_key = os.getenv("ELEVENLABS_API_KEY")
     if not api_key:
         api_key = input("Please enter your ElevenLabs API key: ")
-        set_key(".env", "ELEVENLABS_API_KEY", api_key)
+        try:
+            set_key(".env", "ELEVENLABS_API_KEY", api_key)
+        except:
+            print("sorry, couldn't save the key to the environment")
     try:
         creator = TTSSkitCreator(api_key)
     except ValueError as e:
