@@ -28,7 +28,7 @@ class TTSSkitCreator:
         print(f"Voice list saved to {filename}")
 
     def parse_script(self, script_path):
-        with open(script_path, 'r') as file:
+        with open(script_path, 'r', encoding='utf-8')  as file:
             content = file.read()
 
         characters_match = re.search(r'characters\s*{([^}]*)}', content, re.DOTALL)
@@ -61,7 +61,7 @@ class TTSSkitCreator:
                 optimize_streaming_latency=0,
                 output_format="mp3_44100_128",
                 text=text,
-                model_id="eleven_monolingual_v2",
+                model_id="eleven_monolingual_v1",
                 voice_settings=VoiceSettings(
                     stability=0.5,
                     similarity_boost=0.75,
